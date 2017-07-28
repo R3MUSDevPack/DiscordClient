@@ -5,13 +5,13 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace R3MUS.Devpack.Discord
 {
     public class Client
     {
-        private const string URI = "https://discordapp.com/api/channels/{0}/messages?limit=50";
+        private const string getURI = "https://discordapp.com/api/channels/{0}/messages?limit=50";
+        private const string postURI = "https://discordapp.com/api/v6/channels/{0}/messages";
         private const string LOGIN_URL = "https://discordapp.com/api/auth/login";
         private const string LOGOUT_URL = "https://discordapp.com/api/auth/logout";
         private string authToken;
@@ -93,7 +93,7 @@ namespace R3MUS.Devpack.Discord
                     {
                         client.Headers[HttpRequestHeader.Authorization] = authToken;
 
-                        var text = System.Text.Encoding.Default.GetString(client.DownloadData(string.Format(URI, channelId.ToString())));
+                        var text = System.Text.Encoding.Default.GetString(client.DownloadData(string.Format(getURI, channelId.ToString())));
 
                         var messages = JsonConvert.DeserializeObject<List<Message>>(text);
                         
@@ -113,6 +113,27 @@ namespace R3MUS.Devpack.Discord
                 }
             }
             return new List<Message>();
+        }
+
+        public void PostMessage(long channelId, Post message)
+        {
+            if (authToken != string.Empty)
+            {
+                try
+                {
+                    var msgString = JsonConvert.SerializeObject(message);
+                    using (var client = new WebClient())
+                    {
+                        client.Headers[HttpRequestHeader.Authorization] = authToken;
+                        client.Headers[HttpRequestHeader.ContentType] = "application/json; charset=UTF-8";
+
+                        var result = client.UploadData(string.Format(postURI, channelId.ToString()), Encoding.Default.GetBytes(msgString));                        
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
     }
 }

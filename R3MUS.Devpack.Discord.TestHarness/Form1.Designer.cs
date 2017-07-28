@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -41,7 +42,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(177, 20);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "clydeenmarland@r3mus.org";
             // 
             // textBox2
             // 
@@ -50,7 +50,6 @@
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(177, 20);
             this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "p33K4800";
             // 
             // button1
             // 
@@ -76,13 +75,24 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(177, 20);
             this.textBox4.TabIndex = 5;
-            this.textBox4.Text = "126512244916748288";
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(263, 69);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(167, 21);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Post Message";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 325);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button1);
@@ -101,6 +111,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button2;
     }
 }
 

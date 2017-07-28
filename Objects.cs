@@ -17,6 +17,13 @@ namespace R3MUS.Devpack.Discord
         public string password { get; set; }
     }
 
+    public class Post
+	{
+		public string content { get; set; }
+		public string nonce { get; set; }
+		public bool tts { get; set; }
+	}
+
     public class MessageCollection
     {
         public Message[] Messages { get; set; }
